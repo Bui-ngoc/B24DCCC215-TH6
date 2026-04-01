@@ -70,16 +70,18 @@ export default () => {
 		setFormSubmiting(true);
 		try {
 			const _id = settings[payload.key]?._id;
+			let result: any;
 			if (_id) {
-				await updateSetting(_id, payload, ip);
+				result = await updateSetting(_id, payload, ip);
 			} else {
-				await createSetting(payload, ip);
+				result = await createSetting(payload, ip);
 			}
 			setSettings((set) => {
 				set[payload.key] = { ...set[payload.key], ...payload.value };
 				return set;
 			});
 			if (!payload?.noNotif) message.success('Lưu thành công');
+			return result?.data?.data || result;
 		} catch (err) {
 			return Promise.reject(err);
 		} finally {

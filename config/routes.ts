@@ -5,19 +5,14 @@
 		routes: [
 			{
 				path: '/user/login',
-				layout: false,
-				name: 'login',
-				component: './user/Login',
+				redirect: '/dashboard',
 			},
 			{
 				path: '/user',
-				redirect: '/user/login',
+				redirect: '/dashboard',
 			},
 		],
 	},
-
-	///////////////////////////////////
-	// DEFAULT MENU
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
@@ -35,6 +30,12 @@
 		name: 'RandomUser',
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
+	},
+	{
+		path: '/quan-ly-ngan-sach',
+		name: 'Quản lý ngân sách',
+		component: './TienIch/QuanLyNganSach',
+		icon: 'MoneyCollectOutlined',
 	},
 
 	// DANH MUC HE THONG
