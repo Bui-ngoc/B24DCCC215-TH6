@@ -1,19 +1,11 @@
 export default [
 	{
+		path: '/',
+		redirect: '/dashboard',
+	},
+	{
 		path: '/user',
-		layout: false,
-		routes: [
-			{
-				path: '/user/login',
-				layout: false,
-				name: 'login',
-				component: './user/Login',
-			},
-			{
-				path: '/user',
-				redirect: '/user/login',
-			},
-		],
+		redirect: '/dashboard',
 	},
 
 	///////////////////////////////////
@@ -55,16 +47,16 @@ export default [
 	{
 		path: '/todo-list',
 		name: 'TodoList',
-		component: './todoList',
+		component: './TrangChu',
 		icon: 'UnorderedListOutlined',
 	},
 	{
 		path: '/game-snn',
 		name: 'GameSNN',
-		component: './gameSNN',
+		component: './TrangChu',
 		icon: 'SmileOutlined',
 	},
-	
+
 	// QUẢN LÝ NHÂN VIÊN, DỊCH VỤ, LỊCH HẸN - TH3
 	{
 		name: 'Quản Lý Dịch Vụ',
@@ -74,31 +66,31 @@ export default [
 			{
 				name: 'NhanVien',
 				path: 'nhan-vien',
-				component: './nhanvien',
+				component: './TrangChu',
 				icon: 'UserOutlined',
 			},
 			{
 				name: 'DichVu',
 				path: 'dich-vu',
-				component: './dichvu',
+				component: './TrangChu',
 				icon: 'AppstoreOutlined',
 			},
 			{
 				name: 'LichHen',
 				path: 'lich-hen',
-				component: './lichhen',
+				component: './TrangChu',
 				icon: 'CalendarOutlined',
 			},
 			{
 				name: 'DanhGia',
 				path: 'danh-gia',
-				component: './DanhGia',
+				component: './TrangChu',
 				icon: 'StarOutlined',
 			},
 			{
 				name: 'ThongKe',
 				path: 'thong-ke',
-				component: './ThongKe',
+				component: './TrangChu',
 				icon: 'BarChartOutlined',
 			},
 		],
@@ -112,18 +104,17 @@ export default [
 			{
 				name: 'Sổ văn bằng',
 				path: 'so-van-bang',
-				component: './QuanLySoVanBang',
+				component: './TrangChu',
 				icon: 'ProfileOutlined',
 			},
 			{
 				name: 'Quyết định tốt nghiệp',
 				path: 'quyet-dinh-tot-nghiep',
-				component: './quyetdinhtotnghiep',
+				component: './TrangChu',
 				icon: 'FileTextOutlined',
 			},
 		],
 	},
-	
 
 	// QUẢN LÝ CÂU LẠC BỘ -TH5
 	{
@@ -134,16 +125,15 @@ export default [
 			{
 				name: 'Danh sách CLB',
 				path: 'danh-sach',
-				component: './CauLacBo',
+				component: './TrangChu',
 				icon: 'AppstoreOutlined',
 			},
 			{
 				name: 'Đơn đăng ký',
 				path: 'don-dang-ky',
-				component: './DonDangKy',
+				component: './TrangChu',
 				icon: 'FormOutlined',
 			},
-			
 		],
 	},
 	// Quản lý du lich - TH6
@@ -164,17 +154,14 @@ export default [
 				component: './LichTrinh',
 				icon: 'ScheduleOutlined',
 			},
-      {
-		path: '/quan-ly-ngan-sach',
-		name: 'Quản lý ngân sách',
-		component: './TienIch/QuanLyNganSach',
-		icon: 'MoneyCollectOutlined',
-	},
-
+			{
+				name: 'Quản lý ngân sách',
+				path: 'quan-ly-ngan-sach',
+				component: './TienIch/QuanLyNganSach',
+				icon: 'MoneyCollectOutlined',
+			},
 		],
 	},
-
-	
 
 	{
 		path: '/notification',
@@ -215,4 +202,3 @@ export default [
 		component: './exception/404',
 	},
 ];
-	
