@@ -25,6 +25,12 @@
 		icon: 'HomeOutlined',
 	},
 	{
+		path: '/quan-tri',
+		name: 'Quản trị',
+		component: './QuanTri',
+		icon: 'ControlOutlined',
+	},
+	{
 		path: '/gioi-thieu',
 		name: 'About',
 		component: './TienIch/GioiThieu',
