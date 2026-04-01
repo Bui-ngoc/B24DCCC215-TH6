@@ -15,7 +15,7 @@ const NotAccessible = () => {
 	}, [initialState?.authorizedPermissions]);
 
 	const onLogout = (): void => {
-		window.location.href = '/user/login';
+		window.location.href = '/dashboard';
 	};
 
 	return (

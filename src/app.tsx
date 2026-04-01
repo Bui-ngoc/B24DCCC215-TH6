@@ -28,7 +28,12 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<IInitialState> {
 	return {
-		permissionLoading: true,
+		permissionLoading: false,
+		currentUser: {
+			name: 'Auto User',
+			preferred_username: 'auto.user',
+		},
+		authorizedPermissions: [],
 	};
 }
 
@@ -83,22 +88,21 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 
 		onPageChange: () => {
 			const { location } = history;
-			if (location.pathname === '/') {
+			if (location.pathname === '/' || location.pathname.startsWith('/user')) {
 				history.replace('/dashboard');
 				return;
 			}
 
-			if (initialState?.currentUser) {
-				const isUncheckPath = unCheckPermissionPaths.some((path) => window.location.pathname.includes(path));
+			const isUncheckPath = unCheckPermissionPaths.some((path) => window.location.pathname.includes(path));
 
-				if (
-					!isUncheckPath &&
-					currentRole &&
-					initialState?.authorizedPermissions?.length &&
-					!initialState?.authorizedPermissions?.find((item) => item.rsname === currentRole)
-				) {
-					history.replace('/403');
-				}
+			if (
+				initialState?.currentUser &&
+				currentRole &&
+				!isUncheckPath &&
+				initialState?.authorizedPermissions?.length &&
+				!initialState?.authorizedPermissions?.find((item) => item.rsname === currentRole)
+			) {
+				history.replace('/403');
 			}
 		},
 
