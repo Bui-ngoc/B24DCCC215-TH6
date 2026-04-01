@@ -164,6 +164,13 @@ export default [
 				component: './LichTrinh',
 				icon: 'ScheduleOutlined',
 			},
+      {
+		path: '/quan-ly-ngan-sach',
+		name: 'Quản lý ngân sách',
+		component: './TienIch/QuanLyNganSach',
+		icon: 'MoneyCollectOutlined',
+	},
+
 		],
 	},
 
@@ -208,3 +215,4 @@ export default [
 		component: './exception/404',
 	},
 ];
+	
