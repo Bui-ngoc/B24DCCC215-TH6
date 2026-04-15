@@ -1,3 +1,5 @@
+/* eslint quotes: ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }] */
+
 tinymce.addI18n('vi_VN', {
 	Redo: 'Ho\u00e0n t\u00e1t',
 	Undo: 'Hu\u1ef7 thao t\u00e1c',
