@@ -1,12 +1,5 @@
-import { useAuthActions } from '@/hooks/useAuthActions';
-import { getPermission, getUserInfo } from '@/services/base/api';
 import { primaryColor } from '@/services/base/constant';
-import { type Login } from '@/services/base/typing';
-import axios from '@/utils/axios';
-import { currentRole } from '@/utils/ip';
-import { oidcConfig } from '@/utils/oidcConfig';
-import { ConfigProvider, notification } from 'antd';
-import queryString from 'query-string';
+import { ConfigProvider } from 'antd';
 import { useEffect, type FC } from 'react';
 import { AuthProvider, hasAuthParams, useAuth } from 'react-oidc-context';
 import { history, useModel } from 'umi';
@@ -111,28 +104,12 @@ const OIDCBounder_: FC = ({ children }) => {
 		if (auth.user?.access_token) handleAxios(auth.user.access_token);
 	}, [auth.user?.access_token]);
 
+const OIDCBounder: FC = ({ children }) => {
 	useEffect(() => {
-		OIDCBounderHandlers = actions;
-	}, [actions]);
-
-	useEffect(() => {
-		// Đổi màu real time => Hỗ trợ đổi tenant
 		ConfigProvider.config({ theme: { primaryColor } });
 	}, []);
 
-	return children;
-	// return <>{(auth.isLoading || initialState?.permissionLoading) && !isUnauth ? <LoadingPage /> : children}</>;
+	return <>{children}</>;
 };
 
-export const OIDCBounder: FC & { getActions: () => typeof OIDCBounderHandlers } = (props) => {
-	return (
-		<AuthProvider
-			{...oidcConfig}
-			redirect_uri={window.location.pathname.includes('/user') ? window.location.origin : window.location.href}
-		>
-			<OIDCBounder_ {...props} />
-		</AuthProvider>
-	);
-};
-
-OIDCBounder.getActions = () => OIDCBounderHandlers;
+export default OIDCBounder;

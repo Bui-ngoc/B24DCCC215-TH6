@@ -7,7 +7,7 @@ import { getIntl, getLocale, history } from 'umi';
 import type { RequestOptionsInit, ResponseError } from 'umi-request';
 import ErrorBoundary from './components/ErrorBoundary';
 // import LoadingPage from './components/Loading';
-import { OIDCBounder } from './components/OIDCBounder';
+import OIDCBounder from './components/OIDCBounder';
 import { unCheckPermissionPaths } from './components/OIDCBounder/constant';
 import OneSignalBounder from './components/OneSignalBounder';
 import TechnicalSupportBounder from './components/TechnicalSupportBounder';
@@ -28,7 +28,12 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<IInitialState> {
 	return {
-		permissionLoading: true,
+		permissionLoading: false,
+		currentUser: {
+			name: 'Auto User',
+			preferred_username: 'auto.user',
+		},
+		authorizedPermissions: [],
 	};
 }
 
@@ -82,19 +87,22 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 		footerRender: () => <Footer />,
 
 		onPageChange: () => {
-			if (initialState?.currentUser) {
-				const { location } = history;
-				const isUncheckPath = unCheckPermissionPaths.some((path) => window.location.pathname.includes(path));
+			const { location } = history;
+			if (location.pathname === '/' || location.pathname.startsWith('/user')) {
+				history.replace('/dashboard');
+				return;
+			}
 
-				if (location.pathname === '/') {
-					history.replace('/dashboard');
-				} else if (
-					!isUncheckPath &&
-					currentRole &&
-					initialState?.authorizedPermissions?.length &&
-					!initialState?.authorizedPermissions?.find((item) => item.rsname === currentRole)
-				)
-					history.replace('/403');
+			const isUncheckPath = unCheckPermissionPaths.some((path) => window.location.pathname.includes(path));
+
+			if (
+				initialState?.currentUser &&
+				currentRole &&
+				!isUncheckPath &&
+				initialState?.authorizedPermissions?.length &&
+				!initialState?.authorizedPermissions?.find((item) => item.rsname === currentRole)
+			) {
+				history.replace('/403');
 			}
 		},
 

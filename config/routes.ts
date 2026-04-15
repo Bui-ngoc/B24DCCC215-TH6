@@ -1,19 +1,11 @@
-﻿export default [
+export default [
+	{
+		path: '/',
+		redirect: '/dashboard',
+	},
 	{
 		path: '/user',
-		layout: false,
-		routes: [
-			{
-				path: '/user/login',
-				layout: false,
-				name: 'login',
-				component: './user/Login',
-			},
-			{
-				path: '/user',
-				redirect: '/user/login',
-			},
-		],
+		redirect: '/dashboard',
 	},
 
 	///////////////////////////////////
@@ -23,12 +15,6 @@
 		name: 'Dashboard',
 		component: './TrangChu',
 		icon: 'HomeOutlined',
-	},
-	{
-		path: '/quan-tri',
-		name: 'Quản trị',
-		component: './QuanTri',
-		icon: 'ControlOutlined',
 	},
 	{
 		path: '/gioi-thieu',
@@ -56,6 +42,126 @@
 	// 		},
 	// 	],
 	// },
+
+	// bài tập trên lớp
+	{
+		path: '/todo-list',
+		name: 'TodoList',
+		component: './TrangChu',
+		icon: 'UnorderedListOutlined',
+	},
+	{
+		path: '/game-snn',
+		name: 'GameSNN',
+		component: './TrangChu',
+		icon: 'SmileOutlined',
+	},
+
+	// QUẢN LÝ NHÂN VIÊN, DỊCH VỤ, LỊCH HẸN - TH3
+	{
+		name: 'Quản Lý Dịch Vụ',
+		path: '/quan-ly',
+		icon: 'TeamOutlined',
+		routes: [
+			{
+				name: 'NhanVien',
+				path: 'nhan-vien',
+				component: './TrangChu',
+				icon: 'UserOutlined',
+			},
+			{
+				name: 'DichVu',
+				path: 'dich-vu',
+				component: './TrangChu',
+				icon: 'AppstoreOutlined',
+			},
+			{
+				name: 'LichHen',
+				path: 'lich-hen',
+				component: './TrangChu',
+				icon: 'CalendarOutlined',
+			},
+			{
+				name: 'DanhGia',
+				path: 'danh-gia',
+				component: './TrangChu',
+				icon: 'StarOutlined',
+			},
+			{
+				name: 'ThongKe',
+				path: 'thong-ke',
+				component: './TrangChu',
+				icon: 'BarChartOutlined',
+			},
+		],
+	},
+	// QUẢN LÝ SỔ VĂN BẰNG TỐT NGHIỆP - TH4
+	{
+		name: 'Quản lý văn bằng',
+		path: '/quan-ly-van-bang',
+		icon: 'BookOutlined',
+		routes: [
+			{
+				name: 'Sổ văn bằng',
+				path: 'so-van-bang',
+				component: './TrangChu',
+				icon: 'ProfileOutlined',
+			},
+			{
+				name: 'Quyết định tốt nghiệp',
+				path: 'quyet-dinh-tot-nghiep',
+				component: './TrangChu',
+				icon: 'FileTextOutlined',
+			},
+		],
+	},
+
+	// QUẢN LÝ CÂU LẠC BỘ -TH5
+	{
+		name: 'Quản lý Câu Lạc Bộ',
+		path: '/quan-ly-clb',
+		icon: 'TeamOutlined',
+		routes: [
+			{
+				name: 'Danh sách CLB',
+				path: 'danh-sach',
+				component: './TrangChu',
+				icon: 'AppstoreOutlined',
+			},
+			{
+				name: 'Đơn đăng ký',
+				path: 'don-dang-ky',
+				component: './TrangChu',
+				icon: 'FormOutlined',
+			},
+		],
+	},
+	// Quản lý du lich - TH6
+	{
+		name: 'Quan Ly Du Lich ',
+		path: '/travel-planner',
+		icon: 'CompassOutlined',
+		routes: [
+			{
+				name: 'Khám phá điểm đến',
+				path: 'diem-den',
+				component: './DiemDen',
+				icon: 'EnvironmentOutlined',
+			},
+			{
+				name: 'Lên lịch trình',
+				path: 'lich-trinh',
+				component: './LichTrinh',
+				icon: 'ScheduleOutlined',
+			},
+			{
+				name: 'Quản lý ngân sách',
+				path: 'quan-ly-ngan-sach',
+				component: './TienIch/QuanLyNganSach',
+				icon: 'MoneyCollectOutlined',
+			},
+		],
+	},
 
 	{
 		path: '/notification',
